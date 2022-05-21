@@ -12,6 +12,7 @@ RUN wget https://downloads.mender.io/mender-artifact/3.7.1/linux/mender-artifact
 RUN chmod +x mender-artifact
 RUN cp mender-artifact /usr/local/bin/
 
+COPY uploader /uploader
 COPY requirements.txt /requirements.txt
 RUN python3.9 -m pip install -r /requirements.txt
 
