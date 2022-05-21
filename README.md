@@ -2,6 +2,57 @@
 
 The mender-docker-action is a very lightweight Github action which allows you to upload Mender Update Module artifacts using `mender-artifact` 3.7.1 and Python 3.9 via Mender basic auth and Mender's RESTful API.
 
+## Inputs
+
+### `mender-device-type`
+
+_Description:_
+Target device type.
+
+_Required:_ *true*
+
+### `mender-device-release`
+
+_Description:_
+Release name.
+
+_Required:_ *true*
+
+### `mender-device-update-module`
+
+_Description:_
+Update module name already on the device.
+
+_Required:_ *true*
+
+### `mender-device-update-module-files`
+
+_Description:_
+Files to be executed against the given update module.
+
+_Required:_ *true*
+
+### `mender-device-group`
+
+_Description:_
+Targeted device group for this artifact.
+
+_Required:_ *true*
+
+### `mender-auth-username`
+
+_Description:_
+Mender server basic auth username.
+
+_Required:_ *true*
+
+### `mender-auth-password`
+
+_Description:_
+Mender server basic auth password.
+
+_Required:_ *true*
+
 ## Example usage
 
 ```yaml
