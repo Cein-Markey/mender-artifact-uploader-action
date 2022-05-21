@@ -1,4 +1,4 @@
-name: 'Mender Artifact Uploader'
+name: 'mender-docker-action'
 description: 'A very slim action that uses basic auth to upload your mender artifact to a managed mender server.'
 inputs:
   mender-device-type:
