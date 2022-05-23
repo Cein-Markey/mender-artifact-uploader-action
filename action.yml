@@ -25,6 +25,9 @@ inputs:
   mender-auth-password:
     description: 'Mender server basic auth password'
     required: true
+  mender-server-url:
+    description: 'Mender server url'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -36,3 +39,4 @@ runs:
     - ${{ inputs.mender-device-group }}
     - ${{ inputs.mender-auth-username }}
     - ${{ inputs.mender-auth-password }}
+    - ${{ inputs.mender-server-url }}

@@ -15,9 +15,10 @@ FILES = os.getenv('FILES', default=None)
 
 MENDER_AUTH_USERNAME = os.getenv('MENDER_AUTH_USERNAME', default=None)
 MENDER_AUTH_PASSWORD = os.getenv('MENDER_AUTH_PASSWORD', default=None)
+MENDER_SERVER_URL = os.getenv('MENDER_SERVER_URL', default=None)
 
 def get_jwt() -> str:
-    auth_response = requests.post('https://hosted.mender.io/api/management/v1/useradm/auth/login', verify=False, auth=HTTPBasicAuth(MENDER_AUTH_USERNAME, MENDER_AUTH_PASSWORD))
+    auth_response = requests.post(f'{MENDER_SERVER_URL}/api/management/v1/useradm/auth/login', verify=False, auth=HTTPBasicAuth(MENDER_AUTH_USERNAME, MENDER_AUTH_PASSWORD))
     if auth_response.status_code == 200:
         return auth_response.text
     else:
@@ -49,7 +50,7 @@ def upload_mender_artifact(artifact_name: str, auth_token: str) -> None:
         )
 
         uploader_response = requests.post(
-            'https://hosted.mender.io/api/management/v1/deployments/artifacts',
+            f'{MENDER_SERVER_URL}/api/management/v1/deployments/artifacts',
             data=mp_encoder,
             headers={
                 'Content-Type': mp_encoder.content_type,
@@ -66,7 +67,7 @@ def main() -> None:
     logger = get_logger()
 
     try:
-        for env_var in [FILES, DEVICE_TYPE, RELEASE, UPDATE_MODULE, DEVICE_GROUP, MENDER_AUTH_USERNAME, MENDER_AUTH_PASSWORD]:
+        for env_var in [FILES, DEVICE_TYPE, RELEASE, UPDATE_MODULE, DEVICE_GROUP, MENDER_AUTH_USERNAME, MENDER_AUTH_PASSWORD, MENDER_SERVER_URL]:
             if env_var is None:
                 raise ValueError('error: Required environment variables must be set.')
         
