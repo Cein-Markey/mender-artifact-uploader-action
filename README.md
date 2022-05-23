@@ -73,7 +73,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Upload Mender artifact
-        uses: Cein-Markey/mender-docker-action@v0.2.0-alpha
+        uses: Cein-Markey/mender-artifact-uploader-action@v0.2.0-alpha
         id: mender-artifact-upload
         with:
           mender-device-type: raspberrypi3
